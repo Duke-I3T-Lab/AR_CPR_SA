@@ -1,0 +1,28 @@
+# Core scientific computing libraries
+numpy
+pandas
+scipy
+scikit-learn
+
+# Deep learning frameworks
+torch
+torch-geometric
+
+# Transformers and HuggingFace libraries
+transformers
+datasets
+
+# Data visualization
+matplotlib
+seaborn
+
+# Machine learning utilities
+tqdm
+tabulate
+imbalanced-learn
+
+# Jupyter and development tools
+tensorboard
+
+# Additional utilities
+warnings
