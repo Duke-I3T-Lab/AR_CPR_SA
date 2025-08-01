@@ -406,7 +406,7 @@ class EdgePoolBlock(nn.Module):
         return x, edge_index, edge_weight, edge_attr, batch
 
 
-class ENPoolModel(nn.Module):
+class FixGraphPoolModel(nn.Module):
     """
     Graph Classification model using EdgePool as described in:
     "Edge Contraction Pooling for Graph Neural Networks"

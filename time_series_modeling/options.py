@@ -22,22 +22,7 @@ class Options(object):
             help="Root output directory. Must exist. Time-stamped directories will be created inside.",
         )
         self.parser.add_argument("--data_dir", default="./data", help="Data directory")
-        self.parser.add_argument("--load_model", help="Path to pre-trained model.")
-        self.parser.add_argument(
-            "--resume",
-            action="store_true",
-            help="If set, will load `starting_epoch` and state of optimizer, besides model weights.",
-        )
-        self.parser.add_argument(
-            "--change_output",
-            action="store_true",
-            help="Whether the loaded model will be fine-tuned on a different task (necessitating a different output layer)",
-        )
-        self.parser.add_argument(
-            "--save_all",
-            action="store_true",
-            help="If set, will save model weights (and optimizer state) for every epoch; otherwise just latest",
-        )
+
         self.parser.add_argument(
             "--name",
             dest="experiment_name",
@@ -45,7 +30,7 @@ class Options(object):
             help="A string identifier/name for the experiment to be run - it will be appended to the output directory name, before the timestamp",
         )
         self.parser.add_argument(
-            "--patch_length", dest="patch_length", default=10, type=int
+            "--patch_length", dest="patch_length", default=20, type=int
         )
         self.parser.add_argument("--num_layers", dest="num_layers", default=4, type=int)
         self.parser.add_argument("--split_id", dest="split_id", default="1", type=str)
@@ -92,11 +77,11 @@ class Options(object):
         self.parser.add_argument(
             "--data_class",
             type=str,
-            default="weld",
+            default="ar",
             help="Which type of data should be processed.",
         )
         self.parser.add_argument(
-            "--epochs", type=int, default=400, help="Number of training epochs"
+            "--epochs", type=int, default=10, help="Number of training epochs"
         )
         self.parser.add_argument(
             "--lr",
@@ -105,7 +90,7 @@ class Options(object):
             help="learning rate (default holds for batch size 64)",
         )
         self.parser.add_argument(
-            "--batch_size", type=int, default=64, help="Training batch size"
+            "--batch_size", type=int, default=32, help="Training batch size"
         )
         self.parser.add_argument(
             "--d_model",
@@ -128,7 +113,7 @@ class Options(object):
                 "minmax",
                 "none",
             },
-            default="none",
+            default="minmax",
             help="If specified, will apply normalization on the input features of a dataset.",
         )
 

@@ -1,5 +1,5 @@
 from dataset.dataset import FinalGazeDataset
-from model.ENPool import ENPoolModel
+from model.ENPool import FixGraphPoolModel
 from torch_geometric.loader import DataLoader
 import argparse
 import json
@@ -19,9 +19,13 @@ from sklearn.metrics import (
 
 # Configure argument parser
 parser = argparse.ArgumentParser(description="Train FixSAGraph model")
-parser.add_argument("--dataset", type=str, default="cpr1", help="Dataset name")
 parser.add_argument("--hidden_channels", type=int, default=32, help="Hidden channels")
-parser.add_argument("--in_channels", type=int, default=7, help="input channels")
+parser.add_argument(
+    "--in_channels",
+    type=int,
+    default=7,
+    help="input channels, depends on your input features",
+)
 
 parser.add_argument("--num_layers", type=int, default=3, help="Number of layers")
 parser.add_argument(
@@ -224,7 +228,7 @@ def main():
     configure = f"batch_size_{args.batch_size}_hidden_{args.hidden_channels}_layers_{args.num_layers}_dropout_{args.dropout}_lr_{args.lr}_norm_{args.norm}_score_{args.edge_score_method}"
     tb_dir = os.path.join(
         args.log_dir,
-        f"{args.dataset}",
+        "FixGraphPool",
         f"{configure}",
         f"split_{args.split_id}",
     )
@@ -256,7 +260,7 @@ def main():
     logger.log("Loading datasets...")
 
     train_dataset = FinalGazeDataset(
-        root=f"data/{args.dataset}/processed_21s",
+        root=f"my_data/processed_gaze_21s",
         user_ids=(train_users if args.train_val_together else train_users),
         window_size=args.window_size,
         window_step=args.window_step,
@@ -266,7 +270,7 @@ def main():
     )
 
     test_dataset = FinalGazeDataset(
-        root=f"data/{args.dataset}/processed_21s",
+        root=f"my_data/processed_gaze_21s",
         user_ids=test_users,
         window_size=args.window_size,
         window_step=args.window_step,
@@ -275,13 +279,11 @@ def main():
         used_features=args.used_features,
     )
 
-    logger.log(f"Train dataset size: {len(train_dataset)}")
-
     # Create data loaders
     train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True)
     test_loader = DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False)
     attr_in_conv = args.gnn in ["GATv2Conv", "TransformerConv", "GINEConv"]
-    model = ENPoolModel(
+    model = FixGraphPoolModel(
         in_channels=args.in_channels,
         hidden_channels=args.hidden_channels,
         out_channels=2,
