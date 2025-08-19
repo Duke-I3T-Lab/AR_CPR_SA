@@ -1,14 +1,14 @@
 # Situational Awareness Modeling in AR-Guided CPR
-This is the official code repository for the paper "Will You Be Aware? Eye Tracking-Based Modeling of Situational Awareness in Augmented Reality", authored by Zhehan Qu, Tianyi Hu, Christian Fronk and Maria Gorlatova. [arxiv](https://arxiv.org/abs/2508.05025)
+This is the official code repository for the paper to be presented at ISMAR 2025, titled "**Will You Be Aware? Eye Tracking-Based Modeling of Situational Awareness in Augmented Reality**", authored by Zhehan Qu, Tianyi Hu, Christian Fronk and Maria Gorlatova. [arxiv link](https://arxiv.org/abs/2508.05025)
 
 ## Overview
 ![Overview](assets/teaser.png)
 This work seeks to model situational awareness though eye tracking data captured on a Magic Leap 2 device, in an AR app designed for cardiopulmonary resuscitation (CPR) guidance. To evaluate situational awareness, we designed two realistic, unexpected incidents, i.e. the patient bleeding or vomiting during the CPR procedure, to observe the participants' response. Based on their responses we label them with good or poor SA labels and trained a graph neural network that predicts such label at 83% accuracy.
 
-## Video Demostration
-Check the video below for how we setup our experiment and how the incidents look in the AR view. (Video link temporarily left blank before final decision)
+## Video Demonstration
+Check the video below for how we setup our experiment and how the incidents look in the AR view. A brief introduction of our modeling method is also included in the video. 
 <p align="center">
-    <a href="">
+    <a href="https://youtube.com/shorts/wGF_hvBP-hg?si=Q87Jvc0iydBMBP71">
         <img src="assets/example.png" alt="Watch the video" style="width:50%;">
     </a>
 </p>
@@ -25,7 +25,25 @@ For more details of code usage, please refer to seperate README files in each mo
 
 
 ## Citation
-Citation temporarily left blank before final decision.
+If you find this repo useful or the paper interesting, please consider citing the following paper:
+
+> @misc{qu2025will,
+>
+>    title={Will You Be Aware? Eye Tracking-Based Modeling of Situational Awareness in Augmented Reality},
+>
+>    author={Zhehan Qu and Tianyi Hu and Christian Fronk and Maria Gorlatova},
+>
+>    year={2025},
+>
+>    eprint={2508.05025},
+>
+>    archivePrefix={arXiv},
+>
+>    primaryClass={cs.LG},
+>
+>    url={https://arxiv.org/abs/2508.05025}, 
+>
+> }
 
 ## Acknowledgments
-We thank Cliff Merritt, Bradi Granger and Anna Mall for sharing their insights on the study and app design; we thank Prof. David Carlson and Dr. Amy McDonnell for helpful discussions regarding the work and all participants for contributing to the study. This work was supported in part by NSF grants CSR-2312760, CNS-2112562, and IIS-2231975, NSF CAREER Award IIS-2046072, NSF NAIAD Award 2332744, a CISCO Research Award, a Meta Research Award, Defense Advanced Research Projects Agency Young Faculty Award HR0011-24-1-0001, and the Army Research Laboratory under Cooperative Agreement Number W911NF-23-2-0224. The views and conclusions contained in this document are those of the authors and should not be interpreted as representing the official policies, either expressed or implied, of the Defense Advanced Research Projects Agency, the Army Research Laboratory, or the U.S. Government. This paper has been approved for public release; distribution is unlimited. No official endorsement should be inferred. The U.S. Government is authorized to reproduce and distribute reprints for Government purposes notwithstanding any copyright notation herein.
+We thank Cliff Merritt, Bradi Granger and Anna Mall for sharing their insights on the study and app design; we thank Prof. David Carlson and Dr. Amy McDonnell for helpful discussions regarding the work and all participants for contributing to the study. This work was supported in part by NSF grants CSR-2312760, CNS-2112562, and IIS-2231975, NSF CAREER Award IIS-2046072, NSF NAIAD Award 2332744, a Cisco Research Award, a Meta Research Award, Defense Advanced Research Projects Agency Young Faculty Award HR0011-24-1-0001, and the Army Research Laboratory under Cooperative Agreement Number W911NF-23-2-0224. The views and conclusions contained in this document are those of the authors and should not be interpreted as representing the official policies, either expressed or implied, of the Defense Advanced Research Projects Agency, the Army Research Laboratory, or the U.S. Government. This paper has been approved for public release; distribution is unlimited. No official endorsement should be inferred. The U.S. Government is authorized to reproduce and distribute reprints for Government purposes notwithstanding any copyright notation herein.
