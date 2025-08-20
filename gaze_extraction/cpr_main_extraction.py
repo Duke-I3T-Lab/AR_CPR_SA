@@ -14,9 +14,9 @@ import warnings
 warnings.filterwarnings("ignore")
 
 DATA_DIR = "my_data/raw_data"
-DISCARD_SET = {1, 2, 12, 13, 17, 24}
 
-PARTICIPANTS = list(set(list(range(1, 37))) - DISCARD_SET)
+
+PARTICIPANTS = [1]
 DURATION = 21  # 7, 14, 21
 
 
@@ -93,7 +93,7 @@ if __name__ == "__main__":
                 name,
                 ["bleeding", "vomiting"],
                 [0, 1],
-                ["Before_Confirmation"],
+                ["Before_Recognition"],
             )
             for name in metric_names
         ]
@@ -156,7 +156,6 @@ if __name__ == "__main__":
                 for period, config in enumerate(["Before_Recognition"]):
                     period_data = copy.deepcopy(label_data)
                     period_data.slice_data_with_config(config, duration=DURATION)
-                    total_duration = period_data.get_total_duration()
                     for module in modules:
                         period_data = module.update(period_data)
 

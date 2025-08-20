@@ -1,22 +1,15 @@
 import shutil
 import pandas as pd
-import seaborn as sns
 import numpy as np
-import matplotlib.pyplot as plt
-import pickle
 import warnings
 import os
-from datetime import datetime
-from sklearn.preprocessing import StandardScaler, MinMaxScaler, MaxAbsScaler
-
-import json
 
 TIME_FORMAT = "%H:%M:%S:%f"
 # to ignore warnings
 warnings.filterwarnings("ignore")
 
-DISCARD_SET = {1, 2, 12, 13, 17, 24}
-PARTICIPANTS = list(set(list(range(1, 37))) - DISCARD_SET)
+
+PARTICIPANTS = [1]
 DURATION = 21
 
 

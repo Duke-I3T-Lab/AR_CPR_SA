@@ -349,6 +349,9 @@ class CPRARGazeData(GazeData):
 
         return windows
 
+    def get_total_duration(self) -> float:
+        return self.start_timestamp[-1] - self.start_timestamp[0]
+
 
 if __name__ == "__main__":
     pass

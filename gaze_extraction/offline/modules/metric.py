@@ -3,16 +3,12 @@ from typing import List
 
 from offline.data import GazeData
 from offline.modules import Module
+from collections import defaultdict
 
 
 class FixationMetrics(Module):
     def update(self, data: GazeData) -> GazeData:
-        fixation_metrics = {
-            "PFT": 0,
-            "MFD": 0,
-            "FR": 0,
-            "PFD": 0,
-        }
+        fixation_metrics = {}
 
         if len(data.fixations) > 0:
             fixation_metrics["count"] = len(data.fixations)
@@ -21,41 +17,117 @@ class FixationMetrics(Module):
 
             fixation_metrics["PFT"] = np.sum(durations) / data.get_total_duration()
             fixation_metrics["MFD"] = np.mean(durations)
+            fixation_metrics["SFD"] = np.std(durations)
             fixation_metrics["FR"] = len(data.fixations) / data.get_total_duration()
-            fixation_metrics["PFD"] = np.max(durations)
 
         data.fixation_metrics = fixation_metrics
 
         return data
 
 
+class AmountMetrics(Module):
+    def update(self, data: GazeData) -> GazeData:
+        amount_metrics = {
+            "left_mean": 0,
+            "left_std": 0,
+            "right_mean": 0,
+            "right_std": 0,
+        }
+        left_amount_cleaned = [
+            amount for amount in data.left_amount if amount != 10 and amount != -10
+        ]
+        right_amount_cleaned = [
+            amount for amount in data.right_amount if amount != 10 and amount != -10
+        ]
+
+        amount_metrics["left_mean"] = (
+            np.mean(left_amount_cleaned) if len(left_amount_cleaned) > 0 else -1
+        )
+        amount_metrics["left_std"] = (
+            np.std(left_amount_cleaned) if len(left_amount_cleaned) > 0 else -1
+        )
+        amount_metrics["right_mean"] = (
+            np.mean(right_amount_cleaned) if len(right_amount_cleaned) > 0 else -1
+        )
+        amount_metrics["right_std"] = (
+            np.std(right_amount_cleaned) if len(right_amount_cleaned) > 0 else -1
+        )
+
+        data.amount_metrics = amount_metrics
+        return data
+
+
 class SaccadeMetrics(Module):
     def update(self, data: GazeData) -> GazeData:
-        saccade_metrics = {
-            "duration_mean": 0,
-            "MSA": 0,
-            "MSV": 0,
-            "MPSV": 0,
-        }
+        saccade_metrics = defaultdict(float)
 
         if len(data.saccades) > 0:
-            saccade_metrics["count"] = len(data.saccades)
+            saccade_metrics["SC"] = len(data.saccades)
 
             durations = np.array([saccade["duration"] for saccade in data.saccades])
-            saccade_metrics["duration_mean"] = np.mean(durations)
+            # saccade_metrics["duration_total"] = np.sum(durations)
+            saccade_metrics["MSD"] = np.mean(durations)
+            saccade_metrics["SSD"] = np.std(durations)
 
             amplitudes = np.array([saccade["amplitude"] for saccade in data.saccades])
+            # saccade_metrics["amplitude_total"] = np.sum(amplitudes)
             saccade_metrics["MSA"] = np.mean(amplitudes)
+            saccade_metrics["SSA"] = np.std(amplitudes)
 
             velocities = np.array([saccade["velocity"] for saccade in data.saccades])
             saccade_metrics["MSV"] = np.mean(velocities)
+            saccade_metrics["SSV"] = np.std(velocities)
 
             peak_velocities = np.array(
                 [saccade["peak_velocity"] for saccade in data.saccades]
             )
             saccade_metrics["MPSV"] = np.mean(peak_velocities)
+            saccade_metrics["SPSV"] = np.std(peak_velocities)
+            # saccade_metrics["peak_velocity"] = np.max(peak_velocities)
 
         data.saccade_metrics = saccade_metrics
+
+        return data
+
+
+class SmoothPursuitMetrics(Module):
+    def update(self, data: GazeData) -> GazeData:
+        smooth_pursuit_metrics = {
+            "count": 0,
+            "duration_total": 0,
+            "duration_mean": 0,
+            "duration_std": 0,
+            "amplitude_total": 0,
+            "amplitude_mean": 0,
+            "amplitude_std": 0,
+            "velocity_mean": 0,
+            "velocity_std": 0,
+        }
+
+        if hasattr(data, "smooth_pursuits") and len(data.smooth_pursuits) > 0:
+            smooth_pursuit_metrics["count"] = len(data.smooth_pursuits)
+
+            durations = np.array(
+                [pursuit["duration"] for pursuit in data.smooth_pursuits]
+            )
+            smooth_pursuit_metrics["duration_total"] = np.sum(durations)
+            smooth_pursuit_metrics["duration_mean"] = np.mean(durations)
+            smooth_pursuit_metrics["duration_std"] = np.std(durations)
+
+            amplitudes = np.array(
+                [pursuit["amplitude"] for pursuit in data.smooth_pursuits]
+            )
+            smooth_pursuit_metrics["amplitude_total"] = np.sum(amplitudes)
+            smooth_pursuit_metrics["amplitude_mean"] = np.mean(amplitudes)
+            smooth_pursuit_metrics["amplitude_std"] = np.std(amplitudes)
+
+            velocities = np.array(
+                [pursuit["velocity"] for pursuit in data.smooth_pursuits]
+            )
+            smooth_pursuit_metrics["velocity_mean"] = np.mean(velocities)
+            smooth_pursuit_metrics["velocity_std"] = np.std(velocities)
+
+        data.smooth_pursuit_metrics = smooth_pursuit_metrics
 
         return data
 
@@ -97,12 +169,14 @@ class BlinkMetrics(Module):
                     count += 1
         else:
             count = -1
-
+        # if len(all_chunk_lengths) != 0:
+        #     print("detected blinks: ", count)
+        #     print("average blink length: ", sum(all_chunk_lengths) / len(all_chunk_lengths))
         blink_metrics = {
             "count": count,
             "BR": count / (data.get_total_duration() - reduced_total_duration),
         }
-
+        # print("count of blinks: ", count)
         data.blink_metrics = blink_metrics
         return data
 
@@ -124,6 +198,7 @@ class DiameterMetrics(Module):
         else:
             combined_diameter_mean, combined_diameter_var = -1, -1
         diameter_metrics = {"MD": combined_diameter_mean, "VD": combined_diameter_var}
+        # print("count of blinks: ", count)
         data.diameter_metrics = diameter_metrics
         return data
 

@@ -14,9 +14,8 @@ WINDOW_SIZE = 420
 STEP_SIZE = 60
 DURATION = 21
 SAVE_DIR = f"my_data/processed_ml_{DURATION}s"
-DISCARD_SET = {1, 2, 12, 13, 17, 24}
-PARTICIPANTS = list(set(list(range(1, 37))) - DISCARD_SET)
-IDENTIFIERS = {"practice": 3, "vomiting": 1}
+PARTICIPANTS = [1]
+IDENTIFIERS = {"practice": 3, "bleeding": 0, "vomiting": 1}
 METRICS = {
     "fixation_metrics": ["MFD", "SFD", "FR", "PFT"],
     "saccade_metrics": ["MSV", "SSV", "MPSV", "SPSV", "MSA", "SSA", "MSD", "SSD"],
