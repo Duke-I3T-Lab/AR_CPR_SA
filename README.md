@@ -1,5 +1,5 @@
 # Situational Awareness Modeling in AR-Guided CPR
-This is the official code repository for the paper to be presented at ISMAR 2025, titled "**Will You Be Aware? Eye Tracking-Based Modeling of Situational Awareness in Augmented Reality**", authored by Zhehan Qu, Tianyi Hu, Christian Fronk and Maria Gorlatova. [arxiv link](https://arxiv.org/abs/2508.05025); [video link](https://youtube.com/shorts/wGF_hvBP-hg?si=Q87Jvc0iydBMBP71)
+This is the official code repository for the paper to be presented at IEEE ISMAR 2025, titled "**Will You Be Aware? Eye Tracking-Based Modeling of Situational Awareness in Augmented Reality**", authored by Zhehan Qu, Tianyi Hu, Christian Fronk and Maria Gorlatova. [arxiv link](https://arxiv.org/abs/2508.05025); [video link](https://youtube.com/shorts/wGF_hvBP-hg?si=Q87Jvc0iydBMBP71)
 
 ## Overview
 ![Overview](assets/teaser.png)
@@ -8,7 +8,7 @@ This work seeks to model situational awareness though eye tracking data captured
 ## Video Demonstration
 Check the video below (simply click on the image!) for how we setup our experiment and how the incidents look in the AR view. A brief introduction of our modeling method is also included in the video. 
 <p align="center">
-    <a href="https://youtube.com/shorts/wGF_hvBP-hg?si=Q87Jvc0iydBMBP71">
+    <a href="https://youtube.com/watch?v=wGF_hvBP-hg?si=Q87Jvc0iydBMBP71">
         <img src="assets/example.png" alt="Watch the video" style="width:50%;">
     </a>
 </p>
@@ -16,7 +16,7 @@ Check the video below (simply click on the image!) for how we setup our experime
 ## Code Base Introduction
 The code base consists of three main modules: the [gaze extraction and classic ML module](gaze_extraction), the (baseline) [PatchTSMixer module](time_series_modeling) (thanks to George Zerveas et al. for open sourcing their [code](https://github.com/gzerveas/mvts_transformer), from which we built a part of the model training/testing workflow), and the [FixGraphPool module](fix_graph_pool_modeling). The recommanded workflow (and so was our workflow) is to first compile raw collected gaze data through the gaze extraction module, and then run preprocessing code on gaze extraction output to run the different models. 
 
-**Please note that due to IRB requirements we are not able to release the data.** Instead, we provide *sample data files* in [my_data](my_data) to showcase how the raw data and preprocessed data should look like if the code is used properly. Please note that this data does not come from any of the participants of our study.
+**Please note that due to IRB requirements we are not able to release the data.** Instead, we provide *example data files* corresponding to visual behavior of one of the authors in [my_data](my_data).
 
 For more details of code usage, please refer to seperate README files in each module. 
 - [gaze extraction and classic ML module](gaze_extraction/README.md)
@@ -28,7 +28,7 @@ For more details of code usage, please refer to seperate README files in each mo
 If you find this repo useful or the paper interesting, please consider citing the following paper:
 ```
 @misc{qu2025will,
-title={Will You Be Aware? Eye Tracking-Based Modeling of Situational Awareness in Augmented Reality},
+title={Will You Be Aware? {Eye} Tracking-Based Modeling of Situational Awareness in Augmented Reality},
 author={Zhehan Qu and Tianyi Hu and Christian Fronk and Maria Gorlatova},
 year={2025},
 eprint={2508.05025},
