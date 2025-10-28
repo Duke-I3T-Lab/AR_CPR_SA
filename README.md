@@ -1,5 +1,5 @@
 # Situational Awareness Modeling in AR-Guided CPR
-This is the official code repository for the paper to be presented at IEEE ISMAR 2025, titled "**Will You Be Aware? Eye Tracking-Based Modeling of Situational Awareness in Augmented Reality**", authored by Zhehan Qu, Tianyi Hu, Christian Fronk and Maria Gorlatova. [arxiv link](https://arxiv.org/abs/2508.05025); [video link](https://youtube.com/shorts/wGF_hvBP-hg?si=Q87Jvc0iydBMBP71)
+This is the official code repository for the paper published at IEEE ISMAR 2025, titled "**Will You Be Aware? Eye Tracking-Based Modeling of Situational Awareness in Augmented Reality**", authored by Zhehan Qu, Tianyi Hu, Christian Fronk and Maria Gorlatova. [arxiv link](https://arxiv.org/abs/2508.05025); [video link](https://youtube.com/shorts/wGF_hvBP-hg?si=Q87Jvc0iydBMBP71). (IEEE link will be added upon availability).
 
 ## Overview
 ![Overview](assets/teaser.png)
@@ -27,14 +27,11 @@ For more details of code usage, please refer to seperate README files in each mo
 ## Citation
 If you find this repo useful or the paper interesting, please consider citing the following paper:
 ```
-@misc{qu2025will,
+@INPROCEEDINGS{qu2025will,
 title={Will You Be Aware? {Eye} Tracking-Based Modeling of Situational Awareness in Augmented Reality},
 author={Zhehan Qu and Tianyi Hu and Christian Fronk and Maria Gorlatova},
 year={2025},
-eprint={2508.05025},
-archivePrefix={arXiv},
-primaryClass={cs.LG},
-url={https://arxiv.org/abs/2508.05025}
+booktitle={Proceedings of the IEEE International Symposium on Mixed and Augmented Reality (ISMAR)},
 }
 ```
 ## Acknowledgments
