@@ -1,5 +1,5 @@
 # Situational Awareness Modeling in AR-Guided CPR
-This is the official code repository for the paper published at IEEE ISMAR 2025, titled "**Will You Be Aware? Eye Tracking-Based Modeling of Situational Awareness in Augmented Reality**", authored by Zhehan Qu, Tianyi Hu, Christian Fronk and Maria Gorlatova. [arxiv link](https://arxiv.org/abs/2508.05025); [video link](https://youtube.com/shorts/wGF_hvBP-hg?si=Q87Jvc0iydBMBP71). (IEEE link will be added upon availability).
+This is the official code repository for the paper published at IEEE ISMAR 2025, titled "**Will You Be Aware? Eye Tracking-Based Modeling of Situational Awareness in Augmented Reality**", authored by Zhehan Qu, Tianyi Hu, Christian Fronk and Maria Gorlatova. [arxiv link](https://arxiv.org/abs/2508.05025); [video link](http://youtube.com/watch?v=wGF_hvBP-hg). (IEEE link will be added upon availability).
 
 ## Overview
 ![Overview](assets/teaser.png)
@@ -8,7 +8,7 @@ This work seeks to model situational awareness though eye tracking data captured
 ## Video Demonstration
 Check the video below (simply click on the image!) for how we setup our experiment and how the incidents look in the AR view. A brief introduction of our modeling method is also included in the video. 
 <p align="center">
-    <a href="https://youtube.com/watch?v=wGF_hvBP-hg?si=Q87Jvc0iydBMBP71">
+    <a href="https://youtube.com/watch?v=wGF_hvBP-hg">
         <img src="assets/example.png" alt="Watch the video" style="width:50%;">
     </a>
 </p>
